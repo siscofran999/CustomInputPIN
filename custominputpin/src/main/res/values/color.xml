@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#BE0A0A</color>
+    <color name="colorPrimaryDark">#AB0303</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="placeholder">#BE9090</color>
+    <color name="btn">#0202B1</color>
+    <color name="font">#E7E7FF</color>
+    <color name="cardview">#FEFBFB</color>
+    <color name="btn_circle">#F3F3FC</color>
+
+    <color name="pinpad_background">#CBCBD0</color>
+</resources>
