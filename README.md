@@ -43,3 +43,7 @@ customInputPIN.setOnResultListener(new ResultListener() {
     }
 });
 ```
+LICENCE
+-----
+
+CustomTextView by [Sisco Fran](https://github.com/siscofran999) is licensed under a [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
