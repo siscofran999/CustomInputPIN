@@ -34,7 +34,7 @@ dependencies {
 
 ### JAVA
 ```Java
-customInputPIN = findViewById(R.id.custom_pin);
+customInputPIN = findViewById(R.id.custom);
 customInputPIN.limitMax(7);
 customInputPIN.setOnResultListener(new ResultListener() {
     @Override
