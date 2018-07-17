@@ -18,7 +18,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
     private String set = "";
     private String bintang = "";
     private int[] random = new int[]{0,1,2,3,4,5,6,7,8,9};
-    private String data;
+    private String data, message;
     private int limit = 5;
 
     public ResultListener mListener;
@@ -119,7 +119,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         if (i == R.id.btn_0) {
             String nol = btn_0.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(nol);
             } else {
@@ -129,7 +129,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_1) {
             String satu = btn_1.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(satu);
             } else {
@@ -139,7 +139,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_2) {
             String dua = btn_2.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(dua);
             } else {
@@ -149,7 +149,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_3) {
             String tiga = btn_3.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(tiga);
             } else {
@@ -159,7 +159,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_4) {
             String empat = btn_4.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(empat);
             } else {
@@ -169,7 +169,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_5) {
             String lima = btn_5.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(lima);
             } else {
@@ -179,7 +179,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_6) {
             String enam = btn_6.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(enam);
             } else {
@@ -189,7 +189,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_7) {
             String tujuh = btn_7.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(tujuh);
             } else {
@@ -199,7 +199,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_8) {
             String delapan = btn_8.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(delapan);
             } else {
@@ -209,7 +209,7 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         } else if (i == R.id.btn_9) {
             String sembilan = btn_9.getText().toString();
             if(set.length() >= limit){
-                Toast.makeText(v.getContext(), "Max "+limit, Toast.LENGTH_SHORT).show();
+                toastMax(v);
             }else if (set.equals("")) {
                 conditionEmpaty(sembilan);
             } else {
@@ -234,9 +234,14 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
             edt.setText("");
             set = "";
             bintang = "";
+            mListener.onButtonCancel();
         } else if(i == R.id.btn_ok){
             mListener.onButtonOK(data);
         }
+    }
+
+    private void toastMax(View v) {
+        Toast.makeText(v.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void conditionNotEmpaty(String number) {
@@ -253,7 +258,13 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         edt.setText(bintang);
     }
 
-    public void limitMax(int max){
+    public CustomInputPIN limitMax(int max){
         limit = max;
+        return this;
+    }
+
+    public CustomInputPIN limitMsg(String msg){
+        message = msg;
+        return this;
     }
 }

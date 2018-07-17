@@ -4,4 +4,6 @@ public interface ResultListener {
 
     void onButtonOK(String stringList);
 
+    void onButtonCancel();
+
 }
