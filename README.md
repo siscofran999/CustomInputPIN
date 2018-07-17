@@ -20,7 +20,7 @@ allprojects {
 Add the dependency :
 ```build.gradle(:app)
 dependencies {
-	compile 'com.github.siscofran999:CustomInputPIN:1.0'
+	compile 'com.github.siscofran999:CustomInputPIN:1.1'
 }
 ```
 
@@ -35,11 +35,16 @@ dependencies {
 ### JAVA
 ```Java
 customInputPIN = findViewById(R.id.custom);
-customInputPIN.limitMax(7); // limit max input pin
+customInputPIN.limitMax(7).limitMsg("Xory, max limit input 7"); // limit max input pin
 customInputPIN.setOnResultListener(new ResultListener() {
     @Override
     public void onButtonOK(String result) {
 	Log.i(TAG, "onButtonOK: "+result);
+    }
+    
+    @Override
+    public void onButtonCancel() {
+	Toast.makeText(TesActivity.this, "this is cancel", Toast.LENGTH_SHORT).show();
     }
 });
 ```
