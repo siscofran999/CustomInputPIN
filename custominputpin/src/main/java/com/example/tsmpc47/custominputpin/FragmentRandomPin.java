@@ -1,16 +1,24 @@
 package com.example.tsmpc47.custominputpin;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
-import android.util.AttributeSet;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class CustomInputPIN extends ConstraintLayout implements View.OnClickListener {
+public class FragmentRandomPin extends Fragment implements View.OnClickListener{
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
     private Button btn_0,btn_1,btn_2,btn_3,btn_4,btn_5,btn_6,btn_7,btn_8,btn_9,btn_cancel, btn_ok;
     private ImageButton btn_hapus;
@@ -18,41 +26,67 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
     private String set = "";
     private String bintang = "";
     private int[] random = new int[]{0,1,2,3,4,5,6,7,8,9};
-    private String data, message;
+    private String data;
+    private String message = "Xory, Max limit 5";
     private int limit = 5;
 
-    public ResultListener mListener;
+    public ResultListener mListenerResult;
 
-    public void setOnResultListener(ResultListener listener) {
-        this.mListener = listener;
+    //private OnFragmentInteractionListener mListener;
+
+    public FragmentRandomPin() {
+        // Required empty public constructor
     }
 
-    public CustomInputPIN(Context context) {
-        super(context,null);
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment randompin.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static FragmentRandomPin newInstance(String param1, String param2) {
+        FragmentRandomPin fragment = new FragmentRandomPin();
+        return fragment;
     }
 
-    public CustomInputPIN(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.custompin,this,true);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+
         shuffle(random);
+        View view = inflater.inflate(R.layout.fragment_randompin, container, false);
 
-        edt = v.findViewById(R.id.edt);
-        btn_0 = v.findViewById(R.id.btn_0);
-        btn_1 = v.findViewById(R.id.btn_1);
-        btn_2 = v.findViewById(R.id.btn_2);
-        btn_3 = v.findViewById(R.id.btn_3);
-        btn_4 = v.findViewById(R.id.btn_4);
-        btn_5 = v.findViewById(R.id.btn_5);
-        btn_6 = v.findViewById(R.id.btn_6);
-        btn_7 = v.findViewById(R.id.btn_7);
-        btn_8 = v.findViewById(R.id.btn_8);
-        btn_9 = v.findViewById(R.id.btn_9);
-        btn_cancel = v.findViewById(R.id.btn_cancel);
-        btn_hapus = v.findViewById(R.id.btn_hapus);
-        btn_ok = v.findViewById(R.id.btn_ok);
+        edt = view.findViewById(R.id.edt);
+        btn_0 = view.findViewById(R.id.btn_0);
+        btn_1 = view.findViewById(R.id.btn_1);
+        btn_2 = view.findViewById(R.id.btn_2);
+        btn_3 = view.findViewById(R.id.btn_3);
+        btn_4 = view.findViewById(R.id.btn_4);
+        btn_5 = view.findViewById(R.id.btn_5);
+        btn_6 = view.findViewById(R.id.btn_6);
+        btn_7 = view.findViewById(R.id.btn_7);
+        btn_8 = view.findViewById(R.id.btn_8);
+        btn_9 = view.findViewById(R.id.btn_9);
+        btn_cancel = view.findViewById(R.id.btn_cancel);
+        btn_hapus = view.findViewById(R.id.btn_hapus);
+        btn_ok = view.findViewById(R.id.btn_ok);
 
         btn_0.setOnClickListener(this);
         btn_1.setOnClickListener(this);
@@ -101,6 +135,12 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
                     btn_9.setText(String.valueOf(random[i]));
             }
         }
+
+        return view;
+    }
+
+    public void setOnResultListener(ResultListener listener) {
+        this.mListenerResult = listener;
     }
 
     private void shuffle(int[] array){
@@ -112,6 +152,33 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
         }
     }
 
+    private void toastMax(View v) {
+        Toast.makeText(v.getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void conditionNotEmpaty(String number) {
+        data = data+number;
+        set = bintang + number;
+        bintang = set.replace(number, "*");
+        edt.setText(bintang);
+    }
+
+    private void conditionEmpaty(String number) {
+        data = number;
+        set = number;
+        bintang = set.replace(number, "*");
+        edt.setText(bintang);
+    }
+
+    public FragmentRandomPin limitMax(int max){
+        limit = max;
+        return this;
+    }
+
+    public FragmentRandomPin limitMsg(String msg){
+        message = msg;
+        return this;
+    }
 
     @Override
     public void onClick(View v) {
@@ -234,37 +301,9 @@ public class CustomInputPIN extends ConstraintLayout implements View.OnClickList
             edt.setText("");
             set = "";
             bintang = "";
-            mListener.onButtonCancel();
+            mListenerResult.onButtonCancel();
         } else if(i == R.id.btn_ok){
-            mListener.onButtonOK(data);
+            mListenerResult.onButtonOK(data);
         }
-    }
-
-    private void toastMax(View v) {
-        Toast.makeText(v.getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void conditionNotEmpaty(String number) {
-        data = data+number;
-        set = bintang + number;
-        bintang = set.replace(number, "*");
-        edt.setText(bintang);
-    }
-
-    private void conditionEmpaty(String number) {
-        data = number;
-        set = number;
-        bintang = set.replace(number, "*");
-        edt.setText(bintang);
-    }
-
-    public CustomInputPIN limitMax(int max){
-        limit = max;
-        return this;
-    }
-
-    public CustomInputPIN limitMsg(String msg){
-        message = msg;
-        return this;
     }
 }

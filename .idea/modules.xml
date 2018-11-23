@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CustomKeyboardEDC.iml" filepath="$PROJECT_DIR$/CustomKeyboardEDC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CustomInputPIN.iml" filepath="$PROJECT_DIR$/CustomInputPIN.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/custominputpin/custominputpin.iml" filepath="$PROJECT_DIR$/custominputpin/custominputpin.iml" />
     </modules>

@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.tsmpc47.custominputpin.CustomInputPIN
-        android:id="@+id/custom_pin"
+    <Button
+        android:id="@+id/btn_next"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="Next"/>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
