@@ -40,9 +40,9 @@ dependencies {
 
 ### JAVA
 ```Java
-FragmentRandomPin mRandomPin = new FragmentRandomPin();
+final FragmentRandomPin mRandomPin = new FragmentRandomPin();
 
-btn_next = findViewById(R.id.btn_next);
+Button btn_next = findViewById(R.id.btn_next);
 
 btn_next.setOnClickListener(new View.OnClickListener() {
     @Override
