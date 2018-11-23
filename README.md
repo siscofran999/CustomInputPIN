@@ -20,31 +20,47 @@ allprojects {
 Add the dependency :
 ```build.gradle(:app)
 dependencies {
-	compile 'com.github.siscofran999:CustomInputPIN:1.1'
+	compile 'com.github.siscofran999:CustomInputPIN:1.2'
 }
 ```
 
 ## Implement
 ```xml 
-<com.example.tsmpc47.custominputpin.CustomInputPIN
-    android:id="@+id/custom"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+<Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"/>
+
+<FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 ```
 
 ### JAVA
 ```Java
-customInputPIN = findViewById(R.id.custom);
-customInputPIN.limitMax(7).limitMsg("Xory, max limit input 7"); // limit max input pin
-customInputPIN.setOnResultListener(new ResultListener() {
+FragmentRandomPin mRandomPin = new FragmentRandomPin();
+
+btn_next = findViewById(R.id.btn_next);
+
+btn_next.setOnClickListener(new View.OnClickListener() {
     @Override
-    public void onButtonOK(String result) {
-	Log.i(TAG, "onButtonOK: "+result);
-    }
-    
-    @Override
-    public void onButtonCancel() {
-	Toast.makeText(TesActivity.this, "this is cancel", Toast.LENGTH_SHORT).show();
+    public void onClick(View view) {
+	getSupportFragmentManager().beginTransaction().add(R.id.frame,mRandomPin).commit();
+
+	mRandomPin.limitMsg("Xory, limit 7").limitMax(7);
+	mRandomPin.setOnResultListener(new ResultListener() {
+	    @Override
+	    public void onButtonOK(String data) {
+		Toast.makeText(MainActivity.this, ""+data, Toast.LENGTH_SHORT).show();
+	    }
+
+	    @Override
+	    public void onButtonCancel() {
+		Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+	    }
+	});
     }
 });
 ```
