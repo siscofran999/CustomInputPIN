@@ -20,7 +20,7 @@ allprojects {
 Add the dependency :
 ```build.gradle(:app)
 dependencies {
-	implement 'com.github.siscofran999:CustomInputPIN:1.2'
+	implementation 'com.github.siscofran999:CustomInputPIN:1.2'
 }
 ```
 
