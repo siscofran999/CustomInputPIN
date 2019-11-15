@@ -68,3 +68,5 @@ LICENCE
 -----
 
 CustomInputPIN by [SiscoFran](https://github.com/siscofran999) is licensed under a [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+![Image description](https://static.swimlanes.io/c3838c0485837c7d3fe0b70e6667e976.png)
